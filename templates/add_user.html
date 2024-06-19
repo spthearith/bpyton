@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User</title>
+    <!-- Bootstrap CSS link -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Add User</h1>
+        <form action="{{ url_for('add_user') }}" method="post">
+            <!-- Form fields -->
+
+            <button type="submit" class="btn btn-primary" onclick="logAction('add_user')">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function logAction(action) {
+            // JavaScript function to log action
+            fetch('/log', {
+                method: 'POST',
+                body: JSON.stringify({ action: action }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+

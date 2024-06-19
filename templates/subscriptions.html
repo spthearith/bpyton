@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscriptions</title>
+    <!-- Bootstrap CSS link -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Subscriptions</h1>
+        <h2>Customer ID: {{ customer[0] }}</h2>
+        <h3>Customer Name: {{ customer[1] }} {{ customer[2] }}</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Buyer Name</th>
+                    <th>Location</th>
+                    <th>Address</th>
+                    <th>Bandwidth</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Vendor ID</th>
+                    <th>Price</th>
+                    <th>Schedule</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for subscription in subscriptions %}
+                <tr>
+                    <td>{{ subscription[0] }}</td>
+                    <td>{{ subscription[1] }}</td>
+                    <td>{{ subscription[2] }}</td>
+                    <td>{{ subscription[3] }}</td>
+                    <td>{{ subscription[4] }}</td>
+                    <td>{{ subscription[5] }}</td>
+                    <td>{{ subscription[6] }}</td>
+                    <td>{{ subscription[7] }}</td>
+                    <td>{{ subscription[8] }}</td>
+                    <td>{{ subscription[9] }}</td>
+                    <td>{{ subscription[10] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('add_subscription', customer_id=customer[0]) }}" class="btn btn-primary">Add Subscription</a>
+        <a href="{{ url_for('customer_page') }}" class="btn btn-secondary">Back to Customer List</a>
+    </div>
+</body>
+</html>

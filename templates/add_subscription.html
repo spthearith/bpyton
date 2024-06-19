@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Subscription</title>
+    <!-- Bootstrap CSS link -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Add Subscription</h1>
+        <form action="{{ url_for('add_subscription', customer_id=customer_id) }}" method="post">
+            <div class="form-group">
+                <label for="buyer_name">Buyer Name</label>
+                <input type="text" class="form-control" id="buyer_name" name="buyer_name" required>
+            </div>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" class="form-control" id="location" name="location" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="address" name="address" required>
+            </div>
+            <div class="form-group">
+                <label for="bandwidth">Bandwidth</label>
+                <input type="text" class="form-control" id="bandwidth" name="bandwidth" required>
+            </div>
+            <div class="form-group">
+                <label for="schedule">Schedule</label>
+                <select class="form-control" id="schedule" name="schedule" required>
+                    <option value="monthly">Monthly</option>
+                    <option value="lifetime">Lifetime</option>
+                </select>
+            </div>
+            <div class="form-group" id="end_date_group" style="display: none;">
+                <label for="end_date">End Date</label>
+                <input type="date" class="form-control" id="end_date" name="end_date">
+            </div>
+            <div class="form-group">
+                <label for="start_date">Start Date</label>
+                <input type="date" class="form-control" id="start_date" name="start_date" required>
+            </div>
+            <div class="form-group">
+                <label for="vendor">Vendor</label>
+                <select class="form-control" id="vendor" name="vendor" required>
+                    {% for vendor in vendors %}
+                    <option >{{ vendor[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" class="form-control" id="price" name="price" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <a href="{{ url_for('view_subscriptions', customer_id=customer_id) }}" class="btn btn-secondary">Back to Subscriptions</a>
+    </div>
+
+    <!-- Bootstrap JS link -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('schedule').addEventListener('change', function() {
+            var schedule = this.value;
+            if (schedule === 'lifetime') {
+                document.getElementById('end_date_group').style.display = 'block';
+            } else {
+                document.getElementById('end_date_group').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
+
+
