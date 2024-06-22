@@ -150,7 +150,7 @@ def add_user_page():
             flash('User added successfully', 'success')
             return redirect(url_for('add_user_page'))
 
-        return render_template('add_user.html')
+        return render_template('customer.html')
     else:
         create_log(datetime.now(), 'Unauthorized Access', 'Unauthorized access to add user page')
         return redirect(url_for('login'))
@@ -497,7 +497,7 @@ def get_customer_subscription_db_filename(customer_id):
 # Other routes and functions...
 
 if __name__ == '__main__':
-    app.run(debug=True, port=3216)
+    app.run('0.0.0.0', debug=True, port=3216)
 
 
 # Function to create a log entry
